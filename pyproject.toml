@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mra-tools"
+version = "0.0.1"
+authors = [
+  { name="Andrey Shmakov", email="akshmakov@gmail.com" },
+]
+description = "GIS Quality Assurance Tools for Mountain Rescue Association"
+readme = "README.md"
+license = { file="LICENSE" }
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[tool.setuptools]
+packages = ["mratools"]
+
+
+[project.urls]
+"Homepage" = "https://github.com/mra-mapping/mra-tools"
+"Bug Tracker" = "https://github.com/mra-mapping/mra-tools/issues"
