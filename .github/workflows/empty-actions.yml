@@ -1,0 +1,8 @@
+name: Empty Action
+run-name: ${{ github.actor }} is doing nothing
+jobs:
+  check-bats-version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: scripts/test-script.sh
