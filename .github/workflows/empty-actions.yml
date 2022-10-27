@@ -1,5 +1,6 @@
 name: Empty Action
 run-name: ${{ github.actor }} is doing nothing
+on: workflow_dispatch
 jobs:
   check-bats-version:
     runs-on: ubuntu-latest
