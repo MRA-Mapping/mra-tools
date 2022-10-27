@@ -17,4 +17,12 @@ $ source arcgis-dev/bin/activate
 Jupyter will display a URL or file link that will enable you to work on the notebook on your local computer
 
 
+## How to install mra-tools
+
+mra-tools can be installed using the standard python package manager, pip
+
+```
+$ pip install mra-tools
+```
+
 
