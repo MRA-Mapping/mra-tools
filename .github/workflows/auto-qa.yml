@@ -9,7 +9,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ["3.8", "3.9", "3.10"]
+        python-version: "3.8"
 
     steps:
     - uses: actions/checkout@v3
@@ -24,7 +24,6 @@ jobs:
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: quality assurance
-      environment: autoqa
       env:
         _AGIS_URL: ${{ secrets._AGIS_URL }}
         _AGIS_USER: ${{ secrets._AGIS_USER }}
