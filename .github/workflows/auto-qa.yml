@@ -26,9 +26,9 @@ jobs:
     - name: quality assurance
       environment: autoqa
       env:
-	_AGIS_URL: ${{ secrets._AGIS_URL }}
-    	_AGIS_USER: ${{ secrets._AGIS_USER }}
-    	_AGIS_PW: ${{ secrets._AGIS_PW }}
+        _AGIS_URL: ${{ secrets._AGIS_URL }}
+        _AGIS_USER: ${{ secrets._AGIS_USER }}
+        _AGIS_PW: ${{ secrets._AGIS_PW }}
       run: |
         scripts/autoqa.py 
    
