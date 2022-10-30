@@ -1,6 +1,6 @@
 name: Auto QA
 run-name: ${{ github.actor }} is running automatic quality assurance
-on: [push, workflow_dispatch]
+on: workflow_dispatch
   
 jobs:
   check-points-basic:
