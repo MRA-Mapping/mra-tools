@@ -1,7 +1,16 @@
 name: Auto QA
 run-name: ${{ github.actor }} is running automatic quality assurance
-on: workflow_dispatch
-  
+on:
+  workflow_dispatch:
+    inputs:
+      layer_id:
+        description: 'autoqa Layer ID'
+	required: True
+	default: 'ceea424c2f2149c38f1cb3be46653325'
+      filter_sql:
+        description: 'autoqa Filter'
+	required: False
+	defailt: '1=1'
 jobs:
   check-points-basic:
     runs-on: ubuntu-latest
@@ -28,6 +37,7 @@ jobs:
         _AGIS_URL: ${{ secrets._AGIS_URL }}
         _AGIS_USER: ${{ secrets._AGIS_USER }}
         _AGIS_PW: ${{ secrets._AGIS_PW }}
+	_AGIS_LAYER: ${{ github.event.inputs.layer_id }}
+	_AGIS_SEL: ${{ github.event.inputs.filter_sql }}
       run: |
         scripts/autoqa.py 
-   

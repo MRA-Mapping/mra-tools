@@ -16,50 +16,41 @@ from mratools import check_incidents, cmp_incidents, _get_attrs_
 from os import environ
 
 
+
+"""
+"""
+print ("mratools autoqa: Loading Environment Variables")
 server = environ.get("_AGIS_URL", "")
 user = environ.get("_AGIS_USER", "")
 pw = environ.get("_AGIS_PW", "")
+SELECT = environ.get("_AGIS_SEL", "1=1")
+layer_id = environ.get("_AGIS_LAYER", "ceea424c2f2149c38f1cb3be46653325")
+print ("server:%s \nuser:%s \nSELECT:%s \nlayer_id:%s"%(server,user,SELECT,layer_id))
 
+
+print ("mratools autoqa: opening arcgis connection")
 gis = GIS(server, user, pw)
 
-MRA_Main="ceea424c2f2149c38f1cb3be46653325"
-MRA_Archive="26403d6ce684434eb22e0fe6f164bc45"
-CALOES_Main="4fe1f4dd817c4f44a993c748e0080437"
+print ("mratools autoqa: fetching layer")
+layer = gis.content.get(layer_id)
 
-SELECT="Date >= '2021-01-01 00:00:00' AND Date <= '2021-12-31 12:59:59'"
-
-
-LAYER_IDS=[
-#        MRA_Main,
-        MRA_Archive,
-#        CALOES_Main,
-]
+#SELECT="Date >= '2021-01-01 00:00:00' AND Date <= '2021-12-31 12:59:59'"
 
 # Contruct the testing structure <layers>
-layers = {}
-
-# <layer layer_id: ID >
-for layer_id in LAYER_IDS:
-    layers[layer_id] = {'FeatureLayer': gis.content.get(layer_id)}
-
-
-for idx,layer in layers.items():
-    layer['incidents']=layer['FeatureLayer'].layers[0]
-    layer['points_found'] = layer['FeatureLayer'].layers[1]
+layer_s = {'FeatureLayer': layer,
+           'incidents':layer.layers[0],
+           'points_found':layer.layers[1],
+}
 
 
-
-for idx,layer in layers.items():
-    layer['selected_incident_points']=layer['incidents'].query(where = SELECT)
-    #layer['selected_found_points']=layer['points_found].query(where=SELECT)
-
+print ("mratools autoqa: selecting points by query")
+layer_s['selected_incident_points']=layer_s['incidents'].query(where = SELECT)
 
 # Run the tests
 extra_tests = {'check': lambda x: False}
 
-for idx,layer in layers.items():
-    layer['selected_incident_results'] = [_ for _ in check_incidents(layer['selected_incident_points'], external_incident_tests = extra_tests )]
+layer_s['selected_incident_results'] = [_ for _ in check_incidents(layer_s['selected_incident_points'], external_incident_tests = extra_tests )]
 
-print(layers)
+print(layer_s)
 
 
