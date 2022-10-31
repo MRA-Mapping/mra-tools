@@ -5,12 +5,12 @@ on:
     inputs:
       layer_id:
         description: 'autoqa Layer ID'
-	required: True
-	default: 'ceea424c2f2149c38f1cb3be46653325'
+        required: True
+        default: 'ceea424c2f2149c38f1cb3be46653325'
       filter_sql:
         description: 'autoqa Filter'
-	required: False
-	defailt: '1=1'
+        required: False
+        defailt: '1=1'
 jobs:
   check-points-basic:
     runs-on: ubuntu-latest
