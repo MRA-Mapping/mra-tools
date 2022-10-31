@@ -37,7 +37,7 @@ jobs:
         _AGIS_URL: ${{ secrets._AGIS_URL }}
         _AGIS_USER: ${{ secrets._AGIS_USER }}
         _AGIS_PW: ${{ secrets._AGIS_PW }}
-	_AGIS_LAYER: ${{ github.event.inputs.layer_id }}
-	_AGIS_SEL: ${{ github.event.inputs.filter_sql }}
+        _AGIS_LAYER: ${{ github.event.inputs.layer_id }}
+        _AGIS_SEL: ${{ github.event.inputs.filter_sql }}
       run: |
         scripts/autoqa.py 
